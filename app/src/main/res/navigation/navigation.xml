@@ -22,5 +22,13 @@
         <action
             android:id="@+id/actionloginToregis"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/actionloginTolistHobby"
+            app:destination="@id/listHobbyFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/listHobbyFragment"
+        android:name="com.example.uas_anmp.view.ListHobbyFragment"
+        android:label="fragment_list_hobby"
+        tools:layout="@layout/fragment_list_hobby" />
 </navigation>
