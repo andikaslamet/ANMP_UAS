@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.uas_anmp.databinding.HobbyItemLayoutBinding
 import com.example.uas_anmp.model.Hobby
 
-class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
+class HobbyListAdapter(val hobbyList:ArrayList<Hobby>,val adapterOnClick:(Any) -> Unit)
     :RecyclerView.Adapter<HobbyListAdapter.HobbyViewHolder>() {
     class HobbyViewHolder(var binding: HobbyItemLayoutBinding):
         RecyclerView.ViewHolder(binding.root)
@@ -25,7 +25,10 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>)
 
     override fun onBindViewHolder(holder: HobbyViewHolder, position: Int) {
         holder.binding.checkBox.text = hobbyList[position].judul
-        holder.binding.checkBox.text = hobbyList[position].author.nama
+
+        holder.binding.checkBox.setOnCheckedChangeListener{ compoundButton,b ->
+            adapterOnClick(hobbyList[position])
+        }
 
     }
     fun updateHobbyList(newHobbyList: List<Hobby>) {

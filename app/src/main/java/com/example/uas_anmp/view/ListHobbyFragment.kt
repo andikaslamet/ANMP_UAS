@@ -11,12 +11,17 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uas_anmp.R
 import com.example.uas_anmp.databinding.FragmentListHobbyBinding
+import com.example.uas_anmp.model.Hobby
 import com.example.uas_anmp.viewmodel.ListHobbyViewModel
 
 class ListHobbyFragment : Fragment() {
     private lateinit var binding:FragmentListHobbyBinding
     private lateinit var viewModel: ListHobbyViewModel
-    private val hobbyListAdapter:HobbyListAdapter = HobbyListAdapter(arrayListOf())
+    private val hobbyListAdapter:HobbyListAdapter = HobbyListAdapter(arrayListOf(),
+        { item -> doClick(item)})
+    fun doClick(item:Any){
+        viewModel.clearTask(item as Hobby)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
