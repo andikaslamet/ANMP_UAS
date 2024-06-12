@@ -30,5 +30,13 @@
         android:id="@+id/listHobbyFragment"
         android:name="com.example.uas_anmp.view.ListHobbyFragment"
         android:label="fragment_list_hobby"
-        tools:layout="@layout/fragment_list_hobby" />
+        tools:layout="@layout/fragment_list_hobby" >
+        <action
+            android:id="@+id/actionlistTocreate"
+            app:destination="@id/createHobbyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createHobbyFragment"
+        android:name="com.example.uas_anmp.view.CreateHobbyFragment"
+        android:label="CreateHobbyFragment" />
 </navigation>

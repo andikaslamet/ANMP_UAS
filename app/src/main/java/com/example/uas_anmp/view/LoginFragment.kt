@@ -37,6 +37,9 @@ class LoginFragment : Fragment() {
                 Toast.makeText(requireContext(), "Username atau Password Salah", Toast.LENGTH_SHORT).show()
             }
         }
+        binding.btnToRegister.setOnClickListener(){
+            findNavController().navigate(R.id.actionloginToregis)
+        }
 
         binding.btnLogin.setOnClickListener {
             val username = binding.txtusernameLGN.text.toString()
