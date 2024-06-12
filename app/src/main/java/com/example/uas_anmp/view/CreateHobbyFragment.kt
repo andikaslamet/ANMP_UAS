@@ -28,7 +28,6 @@ class CreateHobbyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewmodel = ViewModelProvider(this).get(HobbyViewModel::class.java)
-        val radio = view.findViewById<RadioButton>(binding.radioGroupPriority.checkedRadioButtonId)
         binding.btnCreateHobby.setOnClickListener {
             val selectedRadioButtonId = binding.radioGroupPriority.checkedRadioButtonId
             val selectedRadioButton = view.findViewById<RadioButton>(selectedRadioButtonId)

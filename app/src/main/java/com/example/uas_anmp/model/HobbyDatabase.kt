@@ -23,7 +23,7 @@ abstract class HobbyDatabase: RoomDatabase() {
             Room.databaseBuilder(
                 context.applicationContext,
                 HobbyDatabase::class.java,
-                "newhobbydb")
+                "hobbydb")
                 .addMigrations(MIGRATION_1_2)
                 .build()
         operator fun invoke(context: Context) {

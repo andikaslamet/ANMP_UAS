@@ -11,10 +11,12 @@ interface HobbyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertHobby(vararg hobby: Hobby)
 
-    @Query("SELECT * FROM hobby")
+    @Query("SELECT * FROM Hobby")
     fun getAllHobbies(): List<Hobby>
 
     @Query("SELECT * FROM hobby WHERE uuid = :id")
     fun getHobbyByID(id:Int): Hobby
+    @Delete
+    fun deleteHobby(hobby: Hobby)
 
 }
