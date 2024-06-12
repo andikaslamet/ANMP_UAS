@@ -25,8 +25,9 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>,val adapterOnClick:(Any) -
 
     override fun onBindViewHolder(holder: HobbyViewHolder, position: Int) {
         holder.binding.checkBox.text = hobbyList[position].judul
+        holder.binding.textView.text = hobbyList[position].author.nama
 
-        holder.binding.checkBox.setOnCheckedChangeListener{ compoundButton,b ->
+        holder.binding.checkBox.setOnCheckedChangeListener{ compoundButton, b ->
             adapterOnClick(hobbyList[position])
         }
 

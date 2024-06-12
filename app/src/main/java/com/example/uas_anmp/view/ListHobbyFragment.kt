@@ -48,10 +48,10 @@ class ListHobbyFragment : Fragment() {
             hobbyListAdapter.updateHobbyList(it)
             if(it.isEmpty()) {
                 binding.recyclerView?.visibility = View.GONE
-                binding.txtEmpty?.visibility = View.VISIBLE
+                binding.txtEmpty.visibility = View.VISIBLE
             } else {
                 binding.recyclerView?.visibility = View.VISIBLE
-                binding.txtEmpty?.visibility = View.GONE
+                binding.txtEmpty.visibility = View.GONE
             }
         })
 
