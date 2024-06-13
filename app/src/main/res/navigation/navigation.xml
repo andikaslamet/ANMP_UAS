@@ -34,9 +34,21 @@
         <action
             android:id="@+id/actionlistTocreate"
             app:destination="@id/createHobbyFragment" />
+        <action
+            android:id="@+id/actionlistToDetail"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/createHobbyFragment"
         android:name="com.example.uas_anmp.view.CreateHobbyFragment"
         android:label="CreateHobbyFragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.uas_anmp.view.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="uuid"
+            app:argType="integer" />
+    </fragment>
 </navigation>
