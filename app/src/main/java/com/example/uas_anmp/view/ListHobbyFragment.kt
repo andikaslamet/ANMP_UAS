@@ -41,6 +41,10 @@ class ListHobbyFragment : Fragment() {
             val action = ListHobbyFragmentDirections.actionlistTocreate()
             Navigation.findNavController(it).navigate(action)
         }
+        binding.btnprofile.setOnClickListener(){
+            val action = ListHobbyFragmentDirections.actionlistToProfile()
+            Navigation.findNavController(it).navigate(action)
+        }
         observeViewModel()
     }
     fun observeViewModel(){

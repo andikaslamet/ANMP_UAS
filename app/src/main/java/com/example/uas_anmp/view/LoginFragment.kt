@@ -46,6 +46,10 @@ class LoginFragment : Fragment() {
             val password = binding.txtpasswordLGN.text.toString()
             viewmodel.login(username, password)
         }
+        val loggedInUser = viewmodel.getLoggedInUser()
+        if (loggedInUser.username.isNotEmpty() && loggedInUser.password.isNotEmpty()) {
+            findNavController().navigate(R.id.actionloginTolistHobby)
+        }
 
     }
 

@@ -24,8 +24,6 @@ class HobbyListAdapter(val hobbyList:ArrayList<Hobby>,val adapterOnClick:(Any) -
             R.layout.hobby_item_layout, parent, false)
 
         return HobbyViewHolder(view)
-
-
     }
 
     override fun getItemCount(): Int {

@@ -20,6 +20,7 @@ import kotlinx.coroutines.launch
 class UserViewModel(application: Application)
     : AndroidViewModel(application), CoroutineScope {
     private val job = Job()
+    private val sharedPref = SharedPreference(application.applicationContext)
     fun addUser(user: User) {
         viewModelScope.launch {
             val db = buildDB(getApplication())
@@ -48,6 +49,11 @@ class UserViewModel(application: Application)
     private val _loginSuccess = MutableLiveData<Boolean>()
     val loginSuccess: LiveData<Boolean>
         get() = _loginSuccess
+    init {
+        // Check if user is already logged in
+        val loggedInUser = sharedPref.getProfile()
+        _loginSuccess.value = loggedInUser.username.isNotEmpty() && loggedInUser.password.isNotEmpty()
+    }
     fun login(username: String, password: String) {
         viewModelScope.launch {
             val db = buildDB(getApplication())
@@ -56,12 +62,21 @@ class UserViewModel(application: Application)
             }
             if (user != null) {
                 // Handle successful login
+                sharedPref.setProfile(user)
                 _loginSuccess.value = true
             } else {
                 // Handle login failure
                 _loginSuccess.value = false
             }
         }
+    }
+    fun logout() {
+        sharedPref.clearProfile()
+        _loginSuccess.value = false
+    }
+
+    fun getLoggedInUser(): User {
+        return sharedPref.getProfile()
     }
 
 

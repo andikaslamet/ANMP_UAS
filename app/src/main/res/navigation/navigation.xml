@@ -37,6 +37,9 @@
         <action
             android:id="@+id/actionlistToDetail"
             app:destination="@id/detailFragment" />
+        <action
+            android:id="@+id/actionlistToProfile"
+            app:destination="@id/itemProfile" />
     </fragment>
     <fragment
         android:id="@+id/createHobbyFragment"
@@ -50,5 +53,14 @@
         <argument
             android:name="uuid"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemProfile"
+        android:name="com.example.uas_anmp.view.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/actionprofileToLogin"
+            app:destination="@id/loginFragment" />
     </fragment>
 </navigation>
