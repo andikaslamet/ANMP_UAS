@@ -21,7 +21,7 @@ class UserViewModel(application: Application)
     : AndroidViewModel(application), CoroutineScope {
     private val job = Job()
     private val sharedPref = SharedPreference(application.applicationContext)
-    fun addUser(user: User) {
+    /*fun addUser(user: User) {
         viewModelScope.launch {
             val db = buildDB(getApplication())
             val check = withContext(Dispatchers.IO) {
@@ -29,30 +29,42 @@ class UserViewModel(application: Application)
             }
             withContext(Dispatchers.Main) {
                 if (check != null) {
-                    Toast.makeText(getApplication(), "Username sudah terpakai", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(getApplication(), "Username sudah terpakai", Toast.LENGTH_SHORT).show()
                 } else {
                     withContext(Dispatchers.IO) {
                         db.userDao().insertAll(user)
                     }
-                    Toast.makeText(getApplication(), "Registrasi berhasil", Toast.LENGTH_SHORT).show()
+                    //Toast.makeText(getApplication(), "Registrasi berhasil", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }*/
+
+    fun addUser(user: User) {
+        launch {
+            val db = buildDB(getApplication())
+
+            val cek = db.userDao().checkUsername(user.username)
+            if(cek != null)
+            {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(getApplication(), "regis gagal", Toast.LENGTH_SHORT).show()
+                }
+            }else{
+                db.userDao().insertAll(user)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(getApplication(), "regis berhasil", Toast.LENGTH_SHORT).show()
+                    
                 }
             }
         }
     }
-
-    //fun addUser(user: User) {
-      //  launch {
-        //    val db = buildDB(getApplication())
-          //  db.userDao().insertAll(user)
-        //}
-    //}
-    private val _loginSuccess = MutableLiveData<Boolean>()
+    private val LoginSuccess = MutableLiveData<Boolean>()
     val loginSuccess: LiveData<Boolean>
-        get() = _loginSuccess
+        get() = LoginSuccess
     init {
-        // Check if user is already logged in
         val loggedInUser = sharedPref.getProfile()
-        _loginSuccess.value = loggedInUser.username.isNotEmpty() && loggedInUser.password.isNotEmpty()
+        LoginSuccess.value = loggedInUser.username.isNotEmpty() && loggedInUser.password.isNotEmpty()
     }
     fun login(username: String, password: String) {
         viewModelScope.launch {
@@ -63,16 +75,16 @@ class UserViewModel(application: Application)
             if (user != null) {
                 // Handle successful login
                 sharedPref.setProfile(user)
-                _loginSuccess.value = true
+                LoginSuccess.value = true
             } else {
                 // Handle login failure
-                _loginSuccess.value = false
+                LoginSuccess.value = false
             }
         }
     }
     fun logout() {
         sharedPref.clearProfile()
-        _loginSuccess.value = false
+        LoginSuccess.value = false
     }
 
     fun getLoggedInUser(): User {

@@ -36,8 +36,16 @@ class RegisterFragment : Fragment() {
                 binding.txtfirstname.text.toString(),
                 binding.txtlastname.text.toString(),
             )
-            viewmodel.addUser(user)
+            val add = viewmodel.addUser(user)
+            if(add != null)
+            {
+
+            }
+            else{
+                findNavController().navigate(R.id.actionregistologin)
+            }
             //Toast.makeText(view.context, "Data added", Toast.LENGTH_LONG).show()
+            //().navigate(R.id.actionregistologin)
         }
         binding.btnToLogin.setOnClickListener(){
             findNavController().navigate(R.id.actionregistologin)

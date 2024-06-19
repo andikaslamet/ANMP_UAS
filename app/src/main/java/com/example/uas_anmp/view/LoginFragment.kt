@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
 
                 findNavController().navigate(R.id.actionloginTolistHobby)
             } else {
-                Toast.makeText(requireContext(), "Username atau Password Salah", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "Username atau Password Salah", Toast.LENGTH_SHORT).show()
             }
         }
         binding.btnToRegister.setOnClickListener(){

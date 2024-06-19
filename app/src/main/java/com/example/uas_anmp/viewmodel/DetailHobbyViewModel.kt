@@ -23,16 +23,6 @@ class DetailHobbyViewModel(application: Application)
         }
     }
 
-    fun addHoby(list:List<Hobby>) {
-        launch {
-            val db = HobbyDatabase.buildHobbyDatabase(
-                getApplication()
-            )
-            db.hobbyDao().insertHobby(*list.toTypedArray())
-        }
-    }
-
-
 
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO

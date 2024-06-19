@@ -22,7 +22,6 @@ class DetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         databinding = DataBindingUtil.inflate<FragmentDetailBinding>(inflater,R.layout.fragment_detail,container,false)
-        // Inflate the layout for this fragment
         return databinding.root
     }
 
