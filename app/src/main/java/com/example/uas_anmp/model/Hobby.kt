@@ -22,7 +22,6 @@ data class Hobby(
     data class Author(
         @ColumnInfo(name = "nama")
         var nama: String,
-
         @ColumnInfo(name = "email")
         var email: String
     )

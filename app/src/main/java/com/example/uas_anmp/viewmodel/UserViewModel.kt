@@ -62,6 +62,7 @@ class UserViewModel(application: Application)
     private val LoginSuccess = MutableLiveData<Boolean>()
     val loginSuccess: LiveData<Boolean>
         get() = LoginSuccess
+    //init digunakan untuk menginisialisasi nilai LoginSuccess berdasarkan data yang disimpan di sharedPref.
     init {
         val loggedInUser = sharedPref.getProfile()
         LoginSuccess.value = loggedInUser.username.isNotEmpty() && loggedInUser.password.isNotEmpty()
@@ -86,13 +87,9 @@ class UserViewModel(application: Application)
         sharedPref.clearProfile()
         LoginSuccess.value = false
     }
-
     fun getLoggedInUser(): User {
         return sharedPref.getProfile()
     }
-
-
-
     override val coroutineContext: CoroutineContext
         get() = job + Dispatchers.IO
 }

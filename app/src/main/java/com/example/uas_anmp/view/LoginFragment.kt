@@ -30,11 +30,10 @@ class LoginFragment : Fragment() {
         viewmodel = ViewModelProvider(this).get(UserViewModel::class.java)
 
         viewmodel.loginSuccess.observe(viewLifecycleOwner) { success ->
-            if (success) {
-
-                findNavController().navigate(R.id.actionloginTolistHobby)
-            } else {
+            if (success != true) {
                 //Toast.makeText(requireContext(), "Username atau Password Salah", Toast.LENGTH_SHORT).show()
+            } else {
+                findNavController().navigate(R.id.actionloginTolistHobby)
             }
         }
         binding.btnToRegister.setOnClickListener(){
@@ -49,6 +48,8 @@ class LoginFragment : Fragment() {
         val loggedInUser = viewmodel.getLoggedInUser()
         if (loggedInUser.username.isNotEmpty() && loggedInUser.password.isNotEmpty()) {
             findNavController().navigate(R.id.actionloginTolistHobby)
+        }else{
+            //Toast.makeText(requireContext(), "Username atau Password Salah", Toast.LENGTH_SHORT).show()
         }
 
     }

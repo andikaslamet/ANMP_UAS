@@ -10,10 +10,8 @@ import androidx.room.Query
 interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg user: User)
-
     @Query("SELECT * FROM user")
     fun selectAllUser(): List<User>
-
     @Query("SELECT * FROM user WHERE uuid= :id")
     fun selectUserBYId(id:Int): User
     @Query("SELECT * FROM user WHERE username = :username AND password = :password")
